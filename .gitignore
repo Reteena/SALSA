@@ -3,3 +3,4 @@ ADReSS*
 venv/
 __pycache__/
 *.csv
+benchmark/processed_features/*
