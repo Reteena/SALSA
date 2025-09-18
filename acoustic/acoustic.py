@@ -3,6 +3,35 @@ import torch, torch.nn as nn, torch.nn.functional as F
 import peft
 import math
 
+class SimpleAttentionPooling(nn.Module):
+    def __init__(self, hidden_size=768, dropout=0.1):
+        super().__init__()
+        self.hidden_size = hidden_size
+
+        self.q = nn.Parameter(torch.randn(hidden_size))
+        self.k_proj = nn.Linear(hidden_size, hidden_size)
+        self.v_proj = nn.Linear(hidden_size, hidden_size)
+        self.out_proj = nn.Linear(hidden_size, hidden_size)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        B, T, D = x.shape
+        d = self.hidden_size
+        k = self.k_proj(x).view(B, T, d).permute(0, 2, 1)  # (B,H,T,d)
+        v = self.v_proj(x).view(B, T, d).permute(0, 2, 1)  # (B,H,T,d)
+
+        q = self.q.unsqueeze(0).expand(B, -1, -1).unsqueeze(2)   # (B,H,1,d)
+
+        # scores: (B,H,1,T)
+        scores = torch.matmul(q, k.transpose(-1, -2)) / math.sqrt(d)
+
+        attn = F.softmax(scores, dim=-1)
+        attn = self.dropout(attn)
+
+        pooled = torch.matmul(attn, v).squeeze(2)  # (B,H,d)
+        pooled = pooled.reshape(B, d)          # (B,D)
+        return torch.sum(self.out_proj(pooled), dim=1)            # (B,D)
+
 class AttentionPooling(nn.Module):
     def __init__(self, hidden_size=768, heads=12, dropout=0.1):
         """
