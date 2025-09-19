@@ -1,0 +1,511 @@
+2025-09-19 10:20:36,521 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:20:36,521 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:20:36,521 - INFO - Using device: cpu
+2025-09-19 10:20:38,495 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:20:38,495 - ERROR - Training failed: fusion.multimodal_fusion.MultimodalFusion() got multiple values for keyword argument 'use_cross_attention'
+2025-09-19 10:23:42,680 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:23:42,680 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:23:42,680 - INFO - Using device: cpu
+2025-09-19 10:23:44,640 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:23:44,663 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:23:45,906 - INFO - Epoch 1/50
+2025-09-19 10:23:46,037 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:23:46,246 - ERROR - Training failed: MetricsCalculator.compute_classification_metrics() got an unexpected keyword argument 'y_true'
+2025-09-19 10:27:42,439 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:27:42,439 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:27:42,439 - INFO - Using device: cpu
+2025-09-19 10:27:44,405 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:27:44,442 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:27:45,658 - INFO - Epoch 1/50
+2025-09-19 10:27:45,785 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:27:46,033 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:27:46,048 - INFO - New best validation F1: 0.6667
+2025-09-19 10:27:46,048 - INFO - Epoch 2/50
+2025-09-19 10:27:46,159 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:27:46,393 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:27:46,432 - INFO - New best validation F1: 0.6874
+2025-09-19 10:27:46,432 - INFO - Epoch 3/50
+2025-09-19 10:27:46,530 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:27:46,761 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:27:46,781 - INFO - New best validation F1: 0.7063
+2025-09-19 10:27:46,781 - INFO - Epoch 4/50
+2025-09-19 10:27:46,885 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:27:47,117 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:27:47,156 - INFO - New best validation F1: 0.7078
+2025-09-19 10:27:47,156 - INFO - Epoch 5/50
+2025-09-19 10:27:47,272 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:27:47,507 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:27:47,530 - INFO - New best validation F1: 0.7290
+2025-09-19 10:27:47,530 - INFO - Epoch 6/50
+2025-09-19 10:27:47,630 - INFO - Batch 0/7, Loss: 0.0683
+2025-09-19 10:27:47,868 - INFO - Epoch 6 - Train Loss: 0.0701, Val Loss: 0.2451, Val F1: 0.7581
+2025-09-19 10:27:47,891 - INFO - New best validation F1: 0.7581
+2025-09-19 10:27:47,891 - INFO - Epoch 7/50
+2025-09-19 10:27:48,012 - INFO - Batch 0/7, Loss: 0.0238
+2025-09-19 10:27:48,240 - INFO - Epoch 7 - Train Loss: 0.0604, Val Loss: 0.1911, Val F1: 0.7290
+2025-09-19 10:27:48,241 - INFO - Epoch 8/50
+2025-09-19 10:27:48,341 - INFO - Batch 0/7, Loss: 0.0377
+2025-09-19 10:27:48,589 - INFO - Epoch 8 - Train Loss: 0.0408, Val Loss: 0.2008, Val F1: 0.7699
+2025-09-19 10:27:48,609 - INFO - New best validation F1: 0.7699
+2025-09-19 10:27:48,610 - INFO - Epoch 9/50
+2025-09-19 10:27:48,714 - INFO - Batch 0/7, Loss: 0.0245
+2025-09-19 10:27:48,964 - INFO - Epoch 9 - Train Loss: 0.0423, Val Loss: 0.2228, Val F1: 0.7290
+2025-09-19 10:27:48,964 - INFO - Epoch 10/50
+2025-09-19 10:27:49,069 - INFO - Batch 0/7, Loss: 0.0212
+2025-09-19 10:27:49,310 - INFO - Epoch 10 - Train Loss: 0.0226, Val Loss: 0.3748, Val F1: 0.6761
+2025-09-19 10:27:49,311 - INFO - Epoch 11/50
+2025-09-19 10:27:49,410 - INFO - Batch 0/7, Loss: 0.0170
+2025-09-19 10:27:49,656 - INFO - Epoch 11 - Train Loss: 0.0295, Val Loss: 0.3619, Val F1: 0.7707
+2025-09-19 10:27:49,657 - INFO - Epoch 12/50
+2025-09-19 10:27:49,760 - INFO - Batch 0/7, Loss: 0.0015
+2025-09-19 10:27:50,034 - INFO - Epoch 12 - Train Loss: 0.0098, Val Loss: 0.3313, Val F1: 0.7707
+2025-09-19 10:27:50,034 - INFO - Epoch 13/50
+2025-09-19 10:27:50,142 - INFO - Batch 0/7, Loss: 0.0119
+2025-09-19 10:27:50,385 - INFO - Epoch 13 - Train Loss: 0.0110, Val Loss: 0.4505, Val F1: 0.6951
+2025-09-19 10:27:50,386 - INFO - Epoch 14/50
+2025-09-19 10:27:50,493 - INFO - Batch 0/7, Loss: 0.0114
+2025-09-19 10:27:50,723 - INFO - Epoch 14 - Train Loss: 0.0107, Val Loss: 0.3454, Val F1: 0.7500
+2025-09-19 10:27:50,723 - INFO - Epoch 15/50
+2025-09-19 10:27:50,843 - INFO - Batch 0/7, Loss: 0.0078
+2025-09-19 10:27:51,074 - INFO - Epoch 15 - Train Loss: 0.0074, Val Loss: 0.3710, Val F1: 0.6863
+2025-09-19 10:27:51,075 - INFO - Epoch 16/50
+2025-09-19 10:27:51,179 - INFO - Batch 0/7, Loss: 0.0038
+2025-09-19 10:27:51,432 - INFO - Epoch 16 - Train Loss: 0.0030, Val Loss: 0.4054, Val F1: 0.7707
+2025-09-19 10:27:51,433 - INFO - Epoch 17/50
+2025-09-19 10:27:51,550 - INFO - Batch 0/7, Loss: 0.0044
+2025-09-19 10:27:51,785 - INFO - Epoch 17 - Train Loss: 0.0029, Val Loss: 0.4868, Val F1: 0.7037
+2025-09-19 10:27:51,785 - INFO - Epoch 18/50
+2025-09-19 10:27:51,880 - INFO - Batch 0/7, Loss: 0.0220
+2025-09-19 10:27:52,113 - INFO - Epoch 18 - Train Loss: 0.0043, Val Loss: 0.4646, Val F1: 0.7063
+2025-09-19 10:27:52,113 - INFO - Early stopping at epoch 18
+2025-09-19 10:27:52,114 - INFO - Evaluating on test set...
+2025-09-19 10:27:52,243 - INFO - Test Results:
+2025-09-19 10:27:52,243 - INFO -   accuracy: 0.7708
+2025-09-19 10:27:52,243 - INFO -   balanced_accuracy: 0.7708
+2025-09-19 10:27:52,243 - INFO -   macro_f1: 0.7699
+2025-09-19 10:27:52,244 - INFO -   weighted_f1: 0.7699
+2025-09-19 10:27:52,244 - INFO -   precision: 0.7751
+2025-09-19 10:27:52,244 - INFO -   recall: 0.7708
+2025-09-19 10:27:52,244 - INFO -   auroc: 0.7708
+2025-09-19 10:27:52,244 - INFO -   auprc: 0.7192
+2025-09-19 10:27:52,244 - INFO -   f1_healthy: 0.7843
+2025-09-19 10:27:52,244 - INFO -   f1_dementia: 0.7556
+2025-09-19 10:27:52,244 - INFO -   ece: 0.2249
+2025-09-19 10:27:52,244 - INFO -   brier_score: 0.2292
+2025-09-19 10:27:52,244 - INFO -   mce: 0.2593
+2025-09-19 10:27:52,245 - INFO - Experiment completed. Results saved to ./experiments/lexical_only_adress
+2025-09-19 10:29:53,226 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:29:53,226 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:29:53,226 - INFO - Using device: cpu
+2025-09-19 10:29:55,206 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:29:55,212 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:29:55,940 - INFO - Epoch 1/50
+2025-09-19 10:29:56,037 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:29:56,256 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:29:56,277 - INFO - New best validation F1: 0.6667
+2025-09-19 10:29:56,277 - INFO - Epoch 2/50
+2025-09-19 10:29:56,368 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:29:56,595 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:29:56,614 - INFO - New best validation F1: 0.6874
+2025-09-19 10:29:56,614 - INFO - Epoch 3/50
+2025-09-19 10:29:56,716 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:29:56,966 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:29:56,986 - INFO - New best validation F1: 0.7063
+2025-09-19 10:29:56,986 - INFO - Epoch 4/50
+2025-09-19 10:29:57,081 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:29:57,315 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:29:57,354 - INFO - New best validation F1: 0.7078
+2025-09-19 10:29:57,355 - INFO - Epoch 5/50
+2025-09-19 10:29:57,489 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:29:57,704 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:29:57,725 - INFO - New best validation F1: 0.7290
+2025-09-19 10:29:57,726 - INFO - Epoch 6/50
+2025-09-19 10:29:57,842 - INFO - Batch 0/7, Loss: 0.0683
+2025-09-19 10:29:58,081 - INFO - Epoch 6 - Train Loss: 0.0701, Val Loss: 0.2451, Val F1: 0.7581
+2025-09-19 10:29:58,102 - INFO - New best validation F1: 0.7581
+2025-09-19 10:29:58,102 - INFO - Epoch 7/50
+2025-09-19 10:29:58,242 - INFO - Batch 0/7, Loss: 0.0238
+2025-09-19 10:29:58,447 - INFO - Epoch 7 - Train Loss: 0.0604, Val Loss: 0.1911, Val F1: 0.7290
+2025-09-19 10:29:58,447 - INFO - Epoch 8/50
+2025-09-19 10:29:58,539 - INFO - Batch 0/7, Loss: 0.0377
+2025-09-19 10:29:58,772 - INFO - Epoch 8 - Train Loss: 0.0408, Val Loss: 0.2008, Val F1: 0.7699
+2025-09-19 10:29:58,793 - INFO - New best validation F1: 0.7699
+2025-09-19 10:29:58,794 - INFO - Epoch 9/50
+2025-09-19 10:29:58,890 - INFO - Batch 0/7, Loss: 0.0245
+2025-09-19 10:29:59,141 - INFO - Epoch 9 - Train Loss: 0.0423, Val Loss: 0.2228, Val F1: 0.7290
+2025-09-19 10:29:59,141 - INFO - Epoch 10/50
+2025-09-19 10:29:59,241 - INFO - Batch 0/7, Loss: 0.0212
+2025-09-19 10:29:59,484 - INFO - Epoch 10 - Train Loss: 0.0226, Val Loss: 0.3748, Val F1: 0.6761
+2025-09-19 10:29:59,485 - INFO - Epoch 11/50
+2025-09-19 10:29:59,589 - INFO - Batch 0/7, Loss: 0.0170
+2025-09-19 10:29:59,825 - INFO - Epoch 11 - Train Loss: 0.0295, Val Loss: 0.3619, Val F1: 0.7707
+2025-09-19 10:29:59,825 - INFO - Epoch 12/50
+2025-09-19 10:29:59,925 - INFO - Batch 0/7, Loss: 0.0015
+2025-09-19 10:30:00,150 - INFO - Epoch 12 - Train Loss: 0.0098, Val Loss: 0.3313, Val F1: 0.7707
+2025-09-19 10:30:00,150 - INFO - Epoch 13/50
+2025-09-19 10:30:00,251 - INFO - Batch 0/7, Loss: 0.0119
+2025-09-19 10:30:00,506 - INFO - Epoch 13 - Train Loss: 0.0110, Val Loss: 0.4505, Val F1: 0.6951
+2025-09-19 10:30:00,506 - INFO - Epoch 14/50
+2025-09-19 10:30:00,608 - INFO - Batch 0/7, Loss: 0.0114
+2025-09-19 10:30:00,872 - INFO - Epoch 14 - Train Loss: 0.0107, Val Loss: 0.3454, Val F1: 0.7500
+2025-09-19 10:30:00,872 - INFO - Epoch 15/50
+2025-09-19 10:30:00,973 - INFO - Batch 0/7, Loss: 0.0078
+2025-09-19 10:30:01,234 - INFO - Epoch 15 - Train Loss: 0.0074, Val Loss: 0.3710, Val F1: 0.6863
+2025-09-19 10:30:01,235 - INFO - Epoch 16/50
+2025-09-19 10:30:01,335 - INFO - Batch 0/7, Loss: 0.0038
+2025-09-19 10:30:01,583 - INFO - Epoch 16 - Train Loss: 0.0030, Val Loss: 0.4054, Val F1: 0.7707
+2025-09-19 10:30:01,583 - INFO - Epoch 17/50
+2025-09-19 10:30:01,688 - INFO - Batch 0/7, Loss: 0.0044
+2025-09-19 10:30:01,943 - INFO - Epoch 17 - Train Loss: 0.0029, Val Loss: 0.4868, Val F1: 0.7037
+2025-09-19 10:30:01,943 - INFO - Epoch 18/50
+2025-09-19 10:30:02,036 - INFO - Batch 0/7, Loss: 0.0220
+2025-09-19 10:30:02,266 - INFO - Epoch 18 - Train Loss: 0.0043, Val Loss: 0.4646, Val F1: 0.7063
+2025-09-19 10:30:02,266 - INFO - Early stopping at epoch 18
+2025-09-19 10:30:02,266 - INFO - Evaluating on test set...
+2025-09-19 10:30:02,391 - INFO - Test Results:
+2025-09-19 10:30:02,391 - INFO -   accuracy: 0.7708
+2025-09-19 10:30:02,391 - INFO -   balanced_accuracy: 0.7708
+2025-09-19 10:30:02,391 - INFO -   macro_f1: 0.7699
+2025-09-19 10:30:02,391 - INFO -   weighted_f1: 0.7699
+2025-09-19 10:30:02,391 - INFO -   precision: 0.7751
+2025-09-19 10:30:02,391 - INFO -   recall: 0.7708
+2025-09-19 10:30:02,391 - INFO -   auroc: 0.7708
+2025-09-19 10:30:02,391 - INFO -   auprc: 0.7192
+2025-09-19 10:30:02,391 - INFO -   f1_healthy: 0.7843
+2025-09-19 10:30:02,392 - INFO -   f1_dementia: 0.7556
+2025-09-19 10:30:02,392 - INFO -   ece: 0.2249
+2025-09-19 10:30:02,392 - INFO -   brier_score: 0.2292
+2025-09-19 10:30:02,392 - INFO -   mce: 0.2593
+2025-09-19 10:30:02,392 - INFO - Experiment completed. Results saved to ./experiments/lexical_only_adress
+2025-09-19 10:36:27,562 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:36:27,562 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:36:27,562 - INFO - Using device: cpu
+2025-09-19 10:36:29,537 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:36:29,543 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:36:30,274 - INFO - Epoch 1/50
+2025-09-19 10:36:30,377 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:36:30,607 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:36:30,628 - INFO - New best validation F1: 0.6667
+2025-09-19 10:36:30,629 - INFO - Epoch 2/50
+2025-09-19 10:36:30,732 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:36:30,962 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:36:30,983 - INFO - New best validation F1: 0.6874
+2025-09-19 10:36:30,983 - INFO - Epoch 3/50
+2025-09-19 10:36:31,094 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:36:31,361 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:36:31,382 - INFO - New best validation F1: 0.7063
+2025-09-19 10:36:31,382 - INFO - Epoch 4/50
+2025-09-19 10:36:31,484 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:36:31,744 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:36:31,767 - INFO - New best validation F1: 0.7078
+2025-09-19 10:36:31,767 - INFO - Epoch 5/50
+2025-09-19 10:36:31,905 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:36:32,165 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:36:32,188 - INFO - New best validation F1: 0.7290
+2025-09-19 10:36:32,188 - INFO - Epoch 6/50
+2025-09-19 10:36:32,311 - INFO - Batch 0/7, Loss: 0.0683
+2025-09-19 10:36:32,607 - INFO - Epoch 6 - Train Loss: 0.0701, Val Loss: 0.2451, Val F1: 0.7581
+2025-09-19 10:36:32,627 - INFO - New best validation F1: 0.7581
+2025-09-19 10:36:32,627 - INFO - Epoch 7/50
+2025-09-19 10:36:32,748 - INFO - Batch 0/7, Loss: 0.0238
+2025-09-19 10:36:32,984 - INFO - Epoch 7 - Train Loss: 0.0604, Val Loss: 0.1911, Val F1: 0.7290
+2025-09-19 10:36:32,984 - INFO - Epoch 8/50
+2025-09-19 10:36:33,075 - INFO - Batch 0/7, Loss: 0.0377
+2025-09-19 10:36:33,304 - INFO - Epoch 8 - Train Loss: 0.0408, Val Loss: 0.2008, Val F1: 0.7699
+2025-09-19 10:36:33,326 - INFO - New best validation F1: 0.7699
+2025-09-19 10:36:33,326 - INFO - Epoch 9/50
+2025-09-19 10:36:33,437 - INFO - Batch 0/7, Loss: 0.0245
+2025-09-19 10:36:33,661 - INFO - Epoch 9 - Train Loss: 0.0423, Val Loss: 0.2228, Val F1: 0.7290
+2025-09-19 10:36:33,661 - INFO - Epoch 10/50
+2025-09-19 10:36:33,760 - INFO - Batch 0/7, Loss: 0.0212
+2025-09-19 10:36:34,017 - INFO - Epoch 10 - Train Loss: 0.0226, Val Loss: 0.3748, Val F1: 0.6761
+2025-09-19 10:36:34,017 - INFO - Epoch 11/50
+2025-09-19 10:36:34,114 - INFO - Batch 0/7, Loss: 0.0170
+2025-09-19 10:36:34,363 - INFO - Epoch 11 - Train Loss: 0.0295, Val Loss: 0.3619, Val F1: 0.7707
+2025-09-19 10:36:34,363 - INFO - Epoch 12/50
+2025-09-19 10:36:34,475 - INFO - Batch 0/7, Loss: 0.0015
+2025-09-19 10:36:34,725 - INFO - Epoch 12 - Train Loss: 0.0098, Val Loss: 0.3313, Val F1: 0.7707
+2025-09-19 10:36:34,725 - INFO - Epoch 13/50
+2025-09-19 10:36:34,826 - INFO - Batch 0/7, Loss: 0.0119
+2025-09-19 10:36:35,051 - INFO - Epoch 13 - Train Loss: 0.0110, Val Loss: 0.4505, Val F1: 0.6951
+2025-09-19 10:36:35,051 - INFO - Epoch 14/50
+2025-09-19 10:36:35,162 - INFO - Batch 0/7, Loss: 0.0114
+2025-09-19 10:36:35,405 - INFO - Epoch 14 - Train Loss: 0.0107, Val Loss: 0.3454, Val F1: 0.7500
+2025-09-19 10:36:35,405 - INFO - Epoch 15/50
+2025-09-19 10:36:35,502 - INFO - Batch 0/7, Loss: 0.0078
+2025-09-19 10:36:35,744 - INFO - Epoch 15 - Train Loss: 0.0074, Val Loss: 0.3710, Val F1: 0.6863
+2025-09-19 10:36:35,744 - INFO - Epoch 16/50
+2025-09-19 10:36:35,840 - INFO - Batch 0/7, Loss: 0.0038
+2025-09-19 10:36:36,078 - INFO - Epoch 16 - Train Loss: 0.0030, Val Loss: 0.4054, Val F1: 0.7707
+2025-09-19 10:36:36,078 - INFO - Epoch 17/50
+2025-09-19 10:36:36,176 - INFO - Batch 0/7, Loss: 0.0044
+2025-09-19 10:36:36,438 - INFO - Epoch 17 - Train Loss: 0.0029, Val Loss: 0.4868, Val F1: 0.7037
+2025-09-19 10:36:36,438 - INFO - Epoch 18/50
+2025-09-19 10:36:36,539 - INFO - Batch 0/7, Loss: 0.0220
+2025-09-19 10:36:36,776 - INFO - Epoch 18 - Train Loss: 0.0043, Val Loss: 0.4646, Val F1: 0.7063
+2025-09-19 10:36:36,777 - INFO - Early stopping at epoch 18
+2025-09-19 10:36:36,777 - INFO - Evaluating on test set...
+2025-09-19 10:36:36,898 - INFO - Test Results:
+2025-09-19 10:36:36,898 - INFO -   accuracy: 0.7708
+2025-09-19 10:36:36,898 - INFO -   balanced_accuracy: 0.7708
+2025-09-19 10:36:36,898 - INFO -   macro_f1: 0.7699
+2025-09-19 10:36:36,898 - INFO -   weighted_f1: 0.7699
+2025-09-19 10:36:36,898 - INFO -   precision: 0.7751
+2025-09-19 10:36:36,898 - INFO -   recall: 0.7708
+2025-09-19 10:36:36,898 - INFO -   auroc: 0.7708
+2025-09-19 10:36:36,899 - INFO -   auprc: 0.7192
+2025-09-19 10:36:36,899 - INFO -   f1_healthy: 0.7843
+2025-09-19 10:36:36,899 - INFO -   f1_dementia: 0.7556
+2025-09-19 10:36:36,899 - INFO -   ece: 0.2249
+2025-09-19 10:36:36,899 - INFO -   brier_score: 0.2292
+2025-09-19 10:36:36,899 - INFO -   mce: 0.2593
+2025-09-19 10:36:36,899 - INFO - Experiment completed. Results saved to ./experiments/lexical_only_adress
+2025-09-19 10:39:12,489 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:39:12,489 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:39:12,489 - INFO - Using device: cpu
+2025-09-19 10:39:14,478 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:39:14,484 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:39:15,209 - INFO - Epoch 1/50
+2025-09-19 10:39:15,311 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:39:15,531 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:39:15,551 - INFO - New best validation F1: 0.6667
+2025-09-19 10:39:15,551 - INFO - Epoch 2/50
+2025-09-19 10:39:15,654 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:39:15,900 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:39:15,919 - INFO - New best validation F1: 0.6874
+2025-09-19 10:39:15,919 - INFO - Epoch 3/50
+2025-09-19 10:39:16,018 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:39:16,250 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:39:16,291 - INFO - New best validation F1: 0.7063
+2025-09-19 10:39:16,291 - INFO - Epoch 4/50
+2025-09-19 10:39:16,384 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:39:16,614 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:39:16,637 - INFO - New best validation F1: 0.7078
+2025-09-19 10:39:16,637 - INFO - Epoch 5/50
+2025-09-19 10:39:16,756 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:39:17,002 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:39:17,020 - INFO - New best validation F1: 0.7290
+2025-09-19 10:39:17,020 - INFO - Epoch 6/50
+2025-09-19 10:39:17,124 - INFO - Batch 0/7, Loss: 0.0683
+2025-09-19 10:39:17,354 - INFO - Epoch 6 - Train Loss: 0.0701, Val Loss: 0.2451, Val F1: 0.7581
+2025-09-19 10:39:17,374 - INFO - New best validation F1: 0.7581
+2025-09-19 10:39:17,374 - INFO - Epoch 7/50
+2025-09-19 10:39:17,503 - INFO - Batch 0/7, Loss: 0.0238
+2025-09-19 10:39:17,699 - INFO - Epoch 7 - Train Loss: 0.0604, Val Loss: 0.1911, Val F1: 0.7290
+2025-09-19 10:39:17,700 - INFO - Epoch 8/50
+2025-09-19 10:39:17,799 - INFO - Batch 0/7, Loss: 0.0377
+2025-09-19 10:39:18,048 - INFO - Epoch 8 - Train Loss: 0.0408, Val Loss: 0.2008, Val F1: 0.7699
+2025-09-19 10:39:18,067 - INFO - New best validation F1: 0.7699
+2025-09-19 10:39:18,067 - INFO - Epoch 9/50
+2025-09-19 10:39:18,176 - INFO - Batch 0/7, Loss: 0.0245
+2025-09-19 10:39:18,399 - INFO - Epoch 9 - Train Loss: 0.0423, Val Loss: 0.2228, Val F1: 0.7290
+2025-09-19 10:39:18,400 - INFO - Epoch 10/50
+2025-09-19 10:39:18,496 - INFO - Batch 0/7, Loss: 0.0212
+2025-09-19 10:39:18,755 - INFO - Epoch 10 - Train Loss: 0.0226, Val Loss: 0.3748, Val F1: 0.6761
+2025-09-19 10:39:18,755 - INFO - Epoch 11/50
+2025-09-19 10:39:18,849 - INFO - Batch 0/7, Loss: 0.0170
+2025-09-19 10:39:19,078 - INFO - Epoch 11 - Train Loss: 0.0295, Val Loss: 0.3619, Val F1: 0.7707
+2025-09-19 10:39:19,078 - INFO - Epoch 12/50
+2025-09-19 10:39:19,183 - INFO - Batch 0/7, Loss: 0.0015
+2025-09-19 10:39:19,461 - INFO - Epoch 12 - Train Loss: 0.0098, Val Loss: 0.3313, Val F1: 0.7707
+2025-09-19 10:39:19,461 - INFO - Epoch 13/50
+2025-09-19 10:39:19,571 - INFO - Batch 0/7, Loss: 0.0119
+2025-09-19 10:39:19,794 - INFO - Epoch 13 - Train Loss: 0.0110, Val Loss: 0.4505, Val F1: 0.6951
+2025-09-19 10:39:19,794 - INFO - Epoch 14/50
+2025-09-19 10:39:19,902 - INFO - Batch 0/7, Loss: 0.0114
+2025-09-19 10:39:20,129 - INFO - Epoch 14 - Train Loss: 0.0107, Val Loss: 0.3454, Val F1: 0.7500
+2025-09-19 10:39:20,129 - INFO - Epoch 15/50
+2025-09-19 10:39:20,230 - INFO - Batch 0/7, Loss: 0.0078
+2025-09-19 10:39:20,467 - INFO - Epoch 15 - Train Loss: 0.0074, Val Loss: 0.3710, Val F1: 0.6863
+2025-09-19 10:39:20,467 - INFO - Epoch 16/50
+2025-09-19 10:39:20,573 - INFO - Batch 0/7, Loss: 0.0038
+2025-09-19 10:39:20,833 - INFO - Epoch 16 - Train Loss: 0.0030, Val Loss: 0.4054, Val F1: 0.7707
+2025-09-19 10:39:20,833 - INFO - Epoch 17/50
+2025-09-19 10:39:20,935 - INFO - Batch 0/7, Loss: 0.0044
+2025-09-19 10:39:21,202 - INFO - Epoch 17 - Train Loss: 0.0029, Val Loss: 0.4868, Val F1: 0.7037
+2025-09-19 10:39:21,203 - INFO - Epoch 18/50
+2025-09-19 10:39:21,312 - INFO - Batch 0/7, Loss: 0.0220
+2025-09-19 10:39:21,542 - INFO - Epoch 18 - Train Loss: 0.0043, Val Loss: 0.4646, Val F1: 0.7063
+2025-09-19 10:39:21,542 - INFO - Early stopping at epoch 18
+2025-09-19 10:39:21,542 - INFO - Evaluating on test set...
+2025-09-19 10:39:21,669 - INFO - Test Results:
+2025-09-19 10:39:21,669 - INFO -   accuracy: 0.7708
+2025-09-19 10:39:21,669 - INFO -   balanced_accuracy: 0.7708
+2025-09-19 10:39:21,669 - INFO -   macro_f1: 0.7699
+2025-09-19 10:39:21,669 - INFO -   weighted_f1: 0.7699
+2025-09-19 10:39:21,669 - INFO -   precision: 0.7751
+2025-09-19 10:39:21,669 - INFO -   recall: 0.7708
+2025-09-19 10:39:21,669 - INFO -   auroc: 0.7708
+2025-09-19 10:39:21,669 - INFO -   auprc: 0.7192
+2025-09-19 10:39:21,669 - INFO -   f1_healthy: 0.7843
+2025-09-19 10:39:21,669 - INFO -   f1_dementia: 0.7556
+2025-09-19 10:39:21,669 - INFO -   ece: 0.2249
+2025-09-19 10:39:21,669 - INFO -   brier_score: 0.2292
+2025-09-19 10:39:21,670 - INFO -   mce: 0.2593
+2025-09-19 10:39:21,670 - INFO - Experiment completed. Results saved to ./experiments/lexical_only_adress
+2025-09-19 10:40:39,761 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:40:39,761 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:40:39,762 - INFO - Using device: cpu
+2025-09-19 10:40:41,815 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:40:41,822 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:40:42,551 - INFO - Epoch 1/50
+2025-09-19 10:40:42,648 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:40:42,868 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:40:42,891 - INFO - New best validation F1: 0.6667
+2025-09-19 10:40:42,891 - INFO - Epoch 2/50
+2025-09-19 10:40:42,993 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:40:43,227 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:40:43,249 - INFO - New best validation F1: 0.6874
+2025-09-19 10:40:43,249 - INFO - Epoch 3/50
+2025-09-19 10:40:43,355 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:40:43,621 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:40:43,645 - INFO - New best validation F1: 0.7063
+2025-09-19 10:40:43,645 - INFO - Epoch 4/50
+2025-09-19 10:40:43,740 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:40:43,973 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:40:43,996 - INFO - New best validation F1: 0.7078
+2025-09-19 10:40:43,996 - INFO - Epoch 5/50
+2025-09-19 10:40:44,112 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:40:44,348 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:40:44,370 - INFO - New best validation F1: 0.7290
+2025-09-19 10:40:44,370 - INFO - Epoch 6/50
+2025-09-19 10:40:44,469 - INFO - Batch 0/7, Loss: 0.0683
+2025-09-19 10:40:44,709 - INFO - Epoch 6 - Train Loss: 0.0701, Val Loss: 0.2451, Val F1: 0.7581
+2025-09-19 10:40:44,731 - INFO - New best validation F1: 0.7581
+2025-09-19 10:40:44,731 - INFO - Epoch 7/50
+2025-09-19 10:40:44,845 - INFO - Batch 0/7, Loss: 0.0238
+2025-09-19 10:40:45,066 - INFO - Epoch 7 - Train Loss: 0.0604, Val Loss: 0.1911, Val F1: 0.7290
+2025-09-19 10:40:45,067 - INFO - Epoch 8/50
+2025-09-19 10:40:45,162 - INFO - Batch 0/7, Loss: 0.0377
+2025-09-19 10:40:45,397 - INFO - Epoch 8 - Train Loss: 0.0408, Val Loss: 0.2008, Val F1: 0.7699
+2025-09-19 10:40:45,419 - INFO - New best validation F1: 0.7699
+2025-09-19 10:40:45,419 - INFO - Epoch 9/50
+2025-09-19 10:40:45,517 - INFO - Batch 0/7, Loss: 0.0245
+2025-09-19 10:40:45,778 - INFO - Epoch 9 - Train Loss: 0.0423, Val Loss: 0.2228, Val F1: 0.7290
+2025-09-19 10:40:45,778 - INFO - Epoch 10/50
+2025-09-19 10:40:45,881 - INFO - Batch 0/7, Loss: 0.0212
+2025-09-19 10:40:46,127 - INFO - Epoch 10 - Train Loss: 0.0226, Val Loss: 0.3748, Val F1: 0.6761
+2025-09-19 10:40:46,127 - INFO - Epoch 11/50
+2025-09-19 10:40:46,237 - INFO - Batch 0/7, Loss: 0.0170
+2025-09-19 10:40:46,497 - INFO - Epoch 11 - Train Loss: 0.0295, Val Loss: 0.3619, Val F1: 0.7707
+2025-09-19 10:40:46,497 - INFO - Epoch 12/50
+2025-09-19 10:40:46,595 - INFO - Batch 0/7, Loss: 0.0015
+2025-09-19 10:40:46,871 - INFO - Epoch 12 - Train Loss: 0.0098, Val Loss: 0.3313, Val F1: 0.7707
+2025-09-19 10:40:46,871 - INFO - Epoch 13/50
+2025-09-19 10:40:46,985 - INFO - Batch 0/7, Loss: 0.0119
+2025-09-19 10:40:47,232 - INFO - Epoch 13 - Train Loss: 0.0110, Val Loss: 0.4505, Val F1: 0.6951
+2025-09-19 10:40:47,232 - INFO - Epoch 14/50
+2025-09-19 10:40:47,365 - INFO - Batch 0/7, Loss: 0.0114
+2025-09-19 10:40:47,636 - INFO - Epoch 14 - Train Loss: 0.0107, Val Loss: 0.3454, Val F1: 0.7500
+2025-09-19 10:40:47,637 - INFO - Epoch 15/50
+2025-09-19 10:40:47,735 - INFO - Batch 0/7, Loss: 0.0078
+2025-09-19 10:40:47,993 - INFO - Epoch 15 - Train Loss: 0.0074, Val Loss: 0.3710, Val F1: 0.6863
+2025-09-19 10:40:47,993 - INFO - Epoch 16/50
+2025-09-19 10:40:48,096 - INFO - Batch 0/7, Loss: 0.0038
+2025-09-19 10:40:48,339 - INFO - Epoch 16 - Train Loss: 0.0030, Val Loss: 0.4054, Val F1: 0.7707
+2025-09-19 10:40:48,340 - INFO - Epoch 17/50
+2025-09-19 10:40:48,440 - INFO - Batch 0/7, Loss: 0.0044
+2025-09-19 10:40:48,693 - INFO - Epoch 17 - Train Loss: 0.0029, Val Loss: 0.4868, Val F1: 0.7037
+2025-09-19 10:40:48,693 - INFO - Epoch 18/50
+2025-09-19 10:40:48,798 - INFO - Batch 0/7, Loss: 0.0220
+2025-09-19 10:40:49,034 - INFO - Epoch 18 - Train Loss: 0.0043, Val Loss: 0.4646, Val F1: 0.7063
+2025-09-19 10:40:49,034 - INFO - Early stopping at epoch 18
+2025-09-19 10:40:49,035 - INFO - Evaluating on test set...
+2025-09-19 10:40:49,158 - INFO - Test Results:
+2025-09-19 10:40:49,158 - INFO -   accuracy: 0.7708
+2025-09-19 10:40:49,158 - INFO -   balanced_accuracy: 0.7708
+2025-09-19 10:40:49,159 - INFO -   macro_f1: 0.7699
+2025-09-19 10:40:49,159 - INFO -   weighted_f1: 0.7699
+2025-09-19 10:40:49,159 - INFO -   precision: 0.7751
+2025-09-19 10:40:49,159 - INFO -   recall: 0.7708
+2025-09-19 10:40:49,159 - INFO -   auroc: 0.7708
+2025-09-19 10:40:49,159 - INFO -   auprc: 0.7192
+2025-09-19 10:40:49,159 - INFO -   f1_healthy: 0.7843
+2025-09-19 10:40:49,159 - INFO -   f1_dementia: 0.7556
+2025-09-19 10:40:49,159 - INFO -   ece: 0.2249
+2025-09-19 10:40:49,159 - INFO -   brier_score: 0.2292
+2025-09-19 10:40:49,159 - INFO -   mce: 0.2593
+2025-09-19 10:40:49,160 - INFO - Experiment completed. Results saved to ./experiments/lexical_only_adress
+2025-09-19 10:42:42,695 - INFO - Starting experiment: lexical_only_adress
+2025-09-19 10:42:42,695 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 50, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 10, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_only_adress', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:42:42,695 - INFO - Using device: cpu
+2025-09-19 10:42:44,646 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:42:44,652 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:42:45,352 - INFO - Epoch 1/50
+2025-09-19 10:42:45,449 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:42:45,660 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:42:45,681 - INFO - New best validation F1: 0.6667
+2025-09-19 10:42:45,681 - INFO - Epoch 2/50
+2025-09-19 10:42:45,785 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:42:46,016 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:42:46,034 - INFO - New best validation F1: 0.6874
+2025-09-19 10:42:46,035 - INFO - Epoch 3/50
+2025-09-19 10:42:46,139 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:42:46,373 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:42:46,393 - INFO - New best validation F1: 0.7063
+2025-09-19 10:42:46,394 - INFO - Epoch 4/50
+2025-09-19 10:42:46,492 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:42:46,752 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:42:46,770 - INFO - New best validation F1: 0.7078
+2025-09-19 10:42:46,770 - INFO - Epoch 5/50
+2025-09-19 10:42:46,885 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:42:47,115 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:42:47,135 - INFO - New best validation F1: 0.7290
+2025-09-19 10:42:47,135 - INFO - Epoch 6/50
+2025-09-19 10:42:47,235 - INFO - Batch 0/7, Loss: 0.0683
+2025-09-19 10:42:47,476 - INFO - Epoch 6 - Train Loss: 0.0701, Val Loss: 0.2451, Val F1: 0.7581
+2025-09-19 10:42:47,495 - INFO - New best validation F1: 0.7581
+2025-09-19 10:42:47,496 - INFO - Epoch 7/50
+2025-09-19 10:42:47,612 - INFO - Batch 0/7, Loss: 0.0238
+2025-09-19 10:42:47,838 - INFO - Epoch 7 - Train Loss: 0.0604, Val Loss: 0.1911, Val F1: 0.7290
+2025-09-19 10:42:47,839 - INFO - Epoch 8/50
+2025-09-19 10:42:47,934 - INFO - Batch 0/7, Loss: 0.0377
+2025-09-19 10:42:48,164 - INFO - Epoch 8 - Train Loss: 0.0408, Val Loss: 0.2008, Val F1: 0.7699
+2025-09-19 10:42:48,185 - INFO - New best validation F1: 0.7699
+2025-09-19 10:42:48,185 - INFO - Epoch 9/50
+2025-09-19 10:42:48,295 - INFO - Batch 0/7, Loss: 0.0245
+2025-09-19 10:42:48,565 - INFO - Epoch 9 - Train Loss: 0.0423, Val Loss: 0.2228, Val F1: 0.7290
+2025-09-19 10:42:48,565 - INFO - Epoch 10/50
+2025-09-19 10:42:48,670 - INFO - Batch 0/7, Loss: 0.0212
+2025-09-19 10:42:48,916 - INFO - Epoch 10 - Train Loss: 0.0226, Val Loss: 0.3748, Val F1: 0.6761
+2025-09-19 10:42:48,916 - INFO - Epoch 11/50
+2025-09-19 10:42:49,014 - INFO - Batch 0/7, Loss: 0.0170
+2025-09-19 10:42:49,277 - INFO - Epoch 11 - Train Loss: 0.0295, Val Loss: 0.3619, Val F1: 0.7707
+2025-09-19 10:42:49,277 - INFO - Epoch 12/50
+2025-09-19 10:42:49,373 - INFO - Batch 0/7, Loss: 0.0015
+2025-09-19 10:42:49,635 - INFO - Epoch 12 - Train Loss: 0.0098, Val Loss: 0.3313, Val F1: 0.7707
+2025-09-19 10:42:49,635 - INFO - Epoch 13/50
+2025-09-19 10:42:49,743 - INFO - Batch 0/7, Loss: 0.0119
+2025-09-19 10:42:49,992 - INFO - Epoch 13 - Train Loss: 0.0110, Val Loss: 0.4505, Val F1: 0.6951
+2025-09-19 10:42:49,992 - INFO - Epoch 14/50
+2025-09-19 10:42:50,089 - INFO - Batch 0/7, Loss: 0.0114
+2025-09-19 10:42:50,367 - INFO - Epoch 14 - Train Loss: 0.0107, Val Loss: 0.3454, Val F1: 0.7500
+2025-09-19 10:42:50,367 - INFO - Epoch 15/50
+2025-09-19 10:42:50,475 - INFO - Batch 0/7, Loss: 0.0078
+2025-09-19 10:42:50,729 - INFO - Epoch 15 - Train Loss: 0.0074, Val Loss: 0.3710, Val F1: 0.6863
+2025-09-19 10:42:50,729 - INFO - Epoch 16/50
+2025-09-19 10:42:50,828 - INFO - Batch 0/7, Loss: 0.0038
+2025-09-19 10:42:51,052 - INFO - Epoch 16 - Train Loss: 0.0030, Val Loss: 0.4054, Val F1: 0.7707
+2025-09-19 10:42:51,052 - INFO - Epoch 17/50
+2025-09-19 10:42:51,158 - INFO - Batch 0/7, Loss: 0.0044
+2025-09-19 10:42:51,405 - INFO - Epoch 17 - Train Loss: 0.0029, Val Loss: 0.4868, Val F1: 0.7037
+2025-09-19 10:42:51,405 - INFO - Epoch 18/50
+2025-09-19 10:42:51,506 - INFO - Batch 0/7, Loss: 0.0220
+2025-09-19 10:42:51,729 - INFO - Epoch 18 - Train Loss: 0.0043, Val Loss: 0.4646, Val F1: 0.7063
+2025-09-19 10:42:51,729 - INFO - Early stopping at epoch 18
+2025-09-19 10:42:51,730 - INFO - Evaluating on test set...
+2025-09-19 10:42:51,847 - INFO - Test Results:
+2025-09-19 10:42:51,847 - INFO -   accuracy: 0.7708
+2025-09-19 10:42:51,847 - INFO -   balanced_accuracy: 0.7708
+2025-09-19 10:42:51,847 - INFO -   macro_f1: 0.7699
+2025-09-19 10:42:51,847 - INFO -   weighted_f1: 0.7699
+2025-09-19 10:42:51,848 - INFO -   precision: 0.7751
+2025-09-19 10:42:51,848 - INFO -   recall: 0.7708
+2025-09-19 10:42:51,848 - INFO -   auroc: 0.7708
+2025-09-19 10:42:51,848 - INFO -   auprc: 0.7192
+2025-09-19 10:42:51,848 - INFO -   f1_healthy: 0.7843
+2025-09-19 10:42:51,848 - INFO -   f1_dementia: 0.7556
+2025-09-19 10:42:51,848 - INFO -   ece: 0.2249
+2025-09-19 10:42:51,848 - INFO -   brier_score: 0.2292
+2025-09-19 10:42:51,848 - INFO -   mce: 0.2593
+2025-09-19 10:42:51,848 - INFO - Experiment completed. Results saved to ./experiments/lexical_only_adress

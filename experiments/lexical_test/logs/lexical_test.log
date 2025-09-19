@@ -1,0 +1,41 @@
+2025-09-19 10:51:39,119 - INFO - Starting experiment: lexical_test
+2025-09-19 10:51:39,119 - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'test_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'fusion_dim': 512, 'num_classes': 2, 'lora_rank': 8, 'use_cross_attention': True, 'aggregation_type': 'attention', 'dropout': 0.1, 'batch_size': 16, 'max_epochs': 5, 'learning_rate': 0.0001, 'weight_decay': 1e-05, 'patience': 3, 'min_delta': 0.001, 'loss_type': 'focal', 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'use_class_weights': False, 'use_group_dro': False, 'num_groups': 2, 'group_weights_lr': 0.01, 'max_utterances_per_recording': 100, 'normalize_features': True, 'filter_min_utterances': 1, 'num_workers': 4, 'device': 'auto', 'seed': 42, 'experiment_name': 'lexical_test', 'output_dir': './experiments', 'save_model': True}
+2025-09-19 10:51:39,119 - INFO - Using device: cpu
+2025-09-19 10:51:41,135 - INFO - Class weights: {0: 1.0, 1: 1.0}
+2025-09-19 10:51:41,142 - INFO - Model parameters: 765,571 trainable / 765,571 total
+2025-09-19 10:51:41,868 - INFO - Epoch 1/5
+2025-09-19 10:51:41,970 - INFO - Batch 0/7, Loss: 0.6437
+2025-09-19 10:51:42,187 - INFO - Epoch 1 - Train Loss: 0.3024, Val Loss: 0.1705, Val F1: 0.6667
+2025-09-19 10:51:42,204 - INFO - New best validation F1: 0.6667
+2025-09-19 10:51:42,204 - INFO - Epoch 2/5
+2025-09-19 10:51:42,309 - INFO - Batch 0/7, Loss: 0.1877
+2025-09-19 10:51:42,604 - INFO - Epoch 2 - Train Loss: 0.1466, Val Loss: 0.1689, Val F1: 0.6874
+2025-09-19 10:51:42,624 - INFO - New best validation F1: 0.6874
+2025-09-19 10:51:42,625 - INFO - Epoch 3/5
+2025-09-19 10:51:42,740 - INFO - Batch 0/7, Loss: 0.1636
+2025-09-19 10:51:42,965 - INFO - Epoch 3 - Train Loss: 0.1546, Val Loss: 0.1717, Val F1: 0.7063
+2025-09-19 10:51:42,985 - INFO - New best validation F1: 0.7063
+2025-09-19 10:51:42,985 - INFO - Epoch 4/5
+2025-09-19 10:51:43,082 - INFO - Batch 0/7, Loss: 0.0633
+2025-09-19 10:51:43,318 - INFO - Epoch 4 - Train Loss: 0.1160, Val Loss: 0.1725, Val F1: 0.7078
+2025-09-19 10:51:43,341 - INFO - New best validation F1: 0.7078
+2025-09-19 10:51:43,341 - INFO - Epoch 5/5
+2025-09-19 10:51:43,473 - INFO - Batch 0/7, Loss: 0.0733
+2025-09-19 10:51:43,701 - INFO - Epoch 5 - Train Loss: 0.1165, Val Loss: 0.1986, Val F1: 0.7290
+2025-09-19 10:51:43,723 - INFO - New best validation F1: 0.7290
+2025-09-19 10:51:43,723 - INFO - Evaluating on test set...
+2025-09-19 10:51:43,854 - INFO - Test Results:
+2025-09-19 10:51:43,854 - INFO -   accuracy: 0.7292
+2025-09-19 10:51:43,854 - INFO -   balanced_accuracy: 0.7292
+2025-09-19 10:51:43,854 - INFO -   macro_f1: 0.7290
+2025-09-19 10:51:43,854 - INFO -   weighted_f1: 0.7290
+2025-09-19 10:51:43,854 - INFO -   precision: 0.7296
+2025-09-19 10:51:43,854 - INFO -   recall: 0.7292
+2025-09-19 10:51:43,855 - INFO -   auroc: 0.7292
+2025-09-19 10:51:43,855 - INFO -   auprc: 0.6694
+2025-09-19 10:51:43,855 - INFO -   f1_healthy: 0.7347
+2025-09-19 10:51:43,855 - INFO -   f1_dementia: 0.7234
+2025-09-19 10:51:43,855 - INFO -   ece: 0.2704
+2025-09-19 10:51:43,855 - INFO -   brier_score: 0.2708
+2025-09-19 10:51:43,855 - INFO -   mce: 0.2800
+2025-09-19 10:51:43,855 - INFO - Experiment completed. Results saved to ./experiments/lexical_test
