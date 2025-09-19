@@ -7,8 +7,12 @@ import numpy as np
 from sklearn.metrics import (
     accuracy_score, balanced_accuracy_score, f1_score, precision_score, 
     recall_score, roc_auc_score, average_precision_score, confusion_matrix,
-    roc_curve, precision_recall_curve, calibration_curve
+    roc_curve, precision_recall_curve
 )
+try:
+    from sklearn.metrics import calibration_curve
+except ImportError:
+    from sklearn.calibration import calibration_curve
 from sklearn.utils import resample
 import matplotlib.pyplot as plt
 import seaborn as sns

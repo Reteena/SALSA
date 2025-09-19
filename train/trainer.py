@@ -311,14 +311,23 @@ class Trainer:
         
         for batch_idx, batch in enumerate(train_loader):
             # Move batch to device
-            acoustic_features = batch['acoustic_features'].to(self.device)
+            acoustic_features = batch.get('acoustic_features')
+            if acoustic_features is not None:
+                acoustic_features = acoustic_features.to(self.device)
+                
             lexical_features = batch['lexical_features'].to(self.device)
             labels = batch['labels'].to(self.device)
-            group_ids = batch['group_ids'].to(self.device)
+            
+            group_ids = batch.get('group_ids')
+            if group_ids is not None:
+                group_ids = group_ids.to(self.device)
+            else:
+                # Create default group_ids for compatibility
+                group_ids = torch.zeros_like(labels)
             
             # Forward pass
             self.optimizer.zero_grad()
-            outputs = self.model(acoustic_features, lexical_features)
+            outputs = self.model(lexical_features, acoustic_features)
             
             # Compute loss
             loss, group_losses, group_counts = self.loss_fn(outputs, labels, group_ids)
@@ -374,16 +383,27 @@ class Trainer:
         
         with torch.no_grad():
             for batch in val_loader:
-                acoustic_features = batch['acoustic_features'].to(self.device)
+                acoustic_features = batch.get('acoustic_features')
+                if acoustic_features is not None:
+                    acoustic_features = acoustic_features.to(self.device)
+                    
                 lexical_features = batch['lexical_features'].to(self.device)
                 labels = batch['labels'].to(self.device)
-                group_ids = batch['group_ids'].to(self.device)
                 
-                outputs = self.model(acoustic_features, lexical_features)
+                group_ids = batch.get('group_ids')
+                if group_ids is not None:
+                    group_ids = group_ids.to(self.device)
+                else:
+                    # Create default group_ids for compatibility
+                    group_ids = torch.zeros_like(labels)
+                
+                outputs = self.model(lexical_features, acoustic_features)
                 loss, _, _ = self.loss_fn(outputs, labels, group_ids)
                 
-                total_loss += loss.item() * acoustic_features.size(0)
-                total_samples += acoustic_features.size(0)
+                # Use lexical_features size if acoustic_features is None
+                batch_size = lexical_features.size(0) if acoustic_features is None else acoustic_features.size(0)
+                total_loss += loss.item() * batch_size
+                total_samples += batch_size
                 
                 # Store predictions for metrics calculation
                 predictions = torch.softmax(outputs, dim=1)
@@ -408,7 +428,10 @@ class Trainer:
     def fit(self, train_loader, val_loader):
         """Main training loop."""
         # Setup loss function with correct number of groups
-        num_groups = len(set(train_loader.dataset.group_ids))
+        if hasattr(train_loader.dataset, 'group_ids'):
+            num_groups = len(set(train_loader.dataset.group_ids))
+        else:
+            num_groups = 2  # Default for binary classification
         self.setup_loss_function(num_groups)
         
         self.logger.info(f"Starting training with {num_groups} groups")

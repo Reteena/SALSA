@@ -15,10 +15,11 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from acoustic.acoustic import AcousticBranch
-from lexical.lexical_features import LexicalBranch  
-from fusion.multimodal_fusion import MultimodalFusion, AcousticOnlyModel, LexicalOnlyModel
-from train.trainer import Trainer, TrainingConfig
+from fusion.multimodal_fusion import MultimodalFusion, create_lexical_only_salsa, create_acoustic_only_salsa, create_multimodal_salsa
+try:
+    from train.trainer import Trainer, TrainingConfig
+except ImportError:
+    from trainer import Trainer, TrainingConfig
 from eval.metrics import compute_classification_metrics
 from data.utterance_dataset import UtteranceDataset, collate_utterance_batch
 
@@ -48,22 +49,21 @@ def create_model(config: TrainingConfig, model_type: str = "multimodal") -> nn.M
         model_type: 'multimodal', 'acoustic_only', or 'lexical_only'
     """
     if model_type == "multimodal":
-        model = MultimodalFusion(
+        model = create_multimodal_salsa(
             acoustic_dim=config.acoustic_dim,
             lexical_dim=config.lexical_dim,
-            hidden_dim=config.hidden_dim,
+            fusion_dim=config.fusion_dim,
             num_classes=config.num_classes,
-            num_fusion_layers=config.num_fusion_layers,
             dropout=config.dropout
         )
     elif model_type == "acoustic_only":
-        model = AcousticOnlyModel(
+        model = create_acoustic_only_salsa(
             acoustic_dim=config.acoustic_dim,
             num_classes=config.num_classes,
             dropout=config.dropout
         )
     elif model_type == "lexical_only":
-        model = LexicalOnlyModel(
+        model = create_lexical_only_salsa(
             lexical_dim=config.lexical_dim,
             num_classes=config.num_classes,
             dropout=config.dropout

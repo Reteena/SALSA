@@ -21,7 +21,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from data.utterance_dataset import UtteranceDataset, collate_utterance_batch
 from fusion.multimodal_fusion import create_multimodal_salsa, create_lexical_only_salsa, create_acoustic_only_salsa
-from train.trainer import Trainer, FocalLoss, GroupDROLoss
+try:
+    from train.trainer import Trainer, FocalLoss, GroupDROLoss
+except ImportError:
+    from trainer import Trainer, FocalLoss, GroupDROLoss
 from eval.metrics import MetricsCalculator
 
 
@@ -75,14 +78,18 @@ def create_model(args) -> nn.Module:
             **model_kwargs
         )
     elif args.model_type == 'lexical_only':
+        # Remove conflicting parameters for lexical-only model
+        lexical_kwargs = {k: v for k, v in model_kwargs.items() if k != 'use_cross_attention'}
         model = create_lexical_only_salsa(
             lexical_dim=args.lexical_dim,
-            **model_kwargs
+            **lexical_kwargs
         )
     elif args.model_type == 'acoustic_only':
+        # Remove conflicting parameters for acoustic-only model  
+        acoustic_kwargs = {k: v for k, v in model_kwargs.items() if k != 'use_cross_attention'}
         model = create_acoustic_only_salsa(
             acoustic_dim=args.acoustic_dim,
-            **model_kwargs
+            **acoustic_kwargs
         )
     else:
         raise ValueError(f"Unknown model type: {args.model_type}")
@@ -223,9 +230,8 @@ def validate_model(model, val_loader, criterion, device, model_type='multimodal'
     # Calculate metrics
     metrics_calc = MetricsCalculator()
     metrics = metrics_calc.compute_classification_metrics(
-        y_true=np.array(all_labels),
-        y_pred=np.array(all_predictions),
-        y_scores=None  # We could compute probabilities if needed
+        predictions=torch.tensor(all_predictions, dtype=torch.long),
+        labels=torch.tensor(all_labels, dtype=torch.long)
     )
     
     return avg_loss, metrics, all_predictions, all_labels, all_recording_ids

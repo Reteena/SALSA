@@ -1,0 +1,38 @@
+2025-09-19 10:39:24,503 - __main__ - INFO - Starting experiment: erm_lexical_adress
+2025-09-19 10:39:24,503 - __main__ - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'hidden_dim': 768, 'num_fusion_layers': 2, 'dropout': 0.3, 'lora_rank': 8, 'lora_alpha': 16, 'batch_size': 16, 'learning_rate': 0.0001, 'weight_decay': 0.01, 'max_epochs': 50, 'patience': 10, 'gradient_clip': 1.0, 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'scheduler_type': 'plateau', 'scheduler_patience': 5, 'scheduler_factor': 0.5, 'experiment_name': 'erm_lexical_adress', 'log_dir': './experiments/logs', 'checkpoint_dir': './checkpoints', 'eval_interval': 1, 'bootstrap_samples': 1000, 'device': None, 'num_workers': 4, 'seed': 42}
+2025-09-19 10:39:24,503 - __main__ - INFO - Creating data loaders...
+2025-09-19 10:39:25,952 - __main__ - INFO - Training samples: 108
+2025-09-19 10:39:25,952 - __main__ - INFO - Validation samples: 48
+2025-09-19 10:39:25,952 - __main__ - INFO - Creating lexical_only model...
+2025-09-19 10:39:25,958 - __main__ - INFO - Total parameters: 765,571
+2025-09-19 10:39:25,959 - __main__ - INFO - Trainable parameters: 765,571
+2025-09-19 10:39:25,959 - __main__ - INFO - Trainable percentage: 100.00%
+2025-09-19 10:39:26,778 - __main__ - INFO - Starting training...
+2025-09-19 10:40:52,004 - __main__ - INFO - Starting experiment: erm_lexical_adress
+2025-09-19 10:40:52,004 - __main__ - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'hidden_dim': 768, 'num_fusion_layers': 2, 'dropout': 0.3, 'lora_rank': 8, 'lora_alpha': 16, 'batch_size': 16, 'learning_rate': 0.0001, 'weight_decay': 0.01, 'max_epochs': 50, 'patience': 10, 'gradient_clip': 1.0, 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'scheduler_type': 'plateau', 'scheduler_patience': 5, 'scheduler_factor': 0.5, 'experiment_name': 'erm_lexical_adress', 'log_dir': './experiments/logs', 'checkpoint_dir': './checkpoints', 'eval_interval': 1, 'bootstrap_samples': 1000, 'device': None, 'num_workers': 4, 'seed': 42}
+2025-09-19 10:40:52,004 - __main__ - INFO - Creating data loaders...
+2025-09-19 10:40:53,474 - __main__ - INFO - Training samples: 108
+2025-09-19 10:40:53,474 - __main__ - INFO - Validation samples: 48
+2025-09-19 10:40:53,475 - __main__ - INFO - Creating lexical_only model...
+2025-09-19 10:40:53,480 - __main__ - INFO - Total parameters: 765,571
+2025-09-19 10:40:53,480 - __main__ - INFO - Trainable parameters: 765,571
+2025-09-19 10:40:53,481 - __main__ - INFO - Trainable percentage: 100.00%
+2025-09-19 10:40:54,288 - __main__ - INFO - Starting training...
+2025-09-19 10:40:54,288 - erm_lexical_adress - INFO - Starting training with 2 groups
+2025-09-19 10:40:54,288 - erm_lexical_adress - INFO - Starting training with 2 groups
+2025-09-19 10:40:54,288 - erm_lexical_adress - INFO - GroupDRO enabled: False
+2025-09-19 10:40:54,288 - erm_lexical_adress - INFO - GroupDRO enabled: False
+2025-09-19 10:42:54,643 - __main__ - INFO - Starting experiment: erm_lexical_adress
+2025-09-19 10:42:54,643 - __main__ - INFO - Arguments: {'train_csv': './preprocess/lexical_features_train.csv', 'val_csv': './preprocess/lexical_features_test.csv', 'model_type': 'lexical_only', 'acoustic_dim': 768, 'lexical_dim': 400, 'hidden_dim': 768, 'num_fusion_layers': 2, 'dropout': 0.3, 'lora_rank': 8, 'lora_alpha': 16, 'batch_size': 16, 'learning_rate': 0.0001, 'weight_decay': 0.01, 'max_epochs': 50, 'patience': 10, 'gradient_clip': 1.0, 'focal_alpha': 1.0, 'focal_gamma': 2.0, 'label_smoothing': 0.05, 'scheduler_type': 'plateau', 'scheduler_patience': 5, 'scheduler_factor': 0.5, 'experiment_name': 'erm_lexical_adress', 'log_dir': './experiments/logs', 'checkpoint_dir': './checkpoints', 'eval_interval': 1, 'bootstrap_samples': 1000, 'device': None, 'num_workers': 4, 'seed': 42}
+2025-09-19 10:42:54,643 - __main__ - INFO - Creating data loaders...
+2025-09-19 10:42:56,060 - __main__ - INFO - Training samples: 108
+2025-09-19 10:42:56,061 - __main__ - INFO - Validation samples: 48
+2025-09-19 10:42:56,061 - __main__ - INFO - Creating lexical_only model...
+2025-09-19 10:42:56,066 - __main__ - INFO - Total parameters: 765,571
+2025-09-19 10:42:56,067 - __main__ - INFO - Trainable parameters: 765,571
+2025-09-19 10:42:56,067 - __main__ - INFO - Trainable percentage: 100.00%
+2025-09-19 10:42:56,786 - __main__ - INFO - Starting training...
+2025-09-19 10:42:56,787 - erm_lexical_adress - INFO - Starting training with 2 groups
+2025-09-19 10:42:56,787 - erm_lexical_adress - INFO - Starting training with 2 groups
+2025-09-19 10:42:56,787 - erm_lexical_adress - INFO - GroupDRO enabled: False
+2025-09-19 10:42:56,787 - erm_lexical_adress - INFO - GroupDRO enabled: False

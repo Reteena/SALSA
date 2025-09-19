@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# SALSA Leave-One-Corpus-Out (LOCO) Evaluation Runner
-# Tests cross-corpus generalization by training on N-1 corpora and testing on the held-out corpus
+# SALSA Training Runner - Simple script for your ADReSS utterance-level data
+# Uses your extracted lexical features CSV files
 
 set -e  # Exit on any error
 
 # Default parameters
-DATA_DIR="./data"
-OUTPUT_DIR="./loco_results"
+TRAIN_CSV="./preprocess/lexical_features_train.csv"
+TEST_CSV="./preprocess/lexical_features_test.csv"
+OUTPUT_DIR="./experiments"
 DEVICE="auto"
 BATCH_SIZE=16
 MAX_EPOCHS=50
@@ -17,8 +18,12 @@ SEED=42
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --data-dir)
-            DATA_DIR="$2"
+        --train-csv)
+            TRAIN_CSV="$2"
+            shift 2
+            ;;
+        --test-csv)
+            TEST_CSV="$2"
             shift 2
             ;;
         --output-dir)
@@ -49,8 +54,9 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --data-dir DIR        Data directory (default: ./data)"
-            echo "  --output-dir DIR      Output directory (default: ./loco_results)"
+            echo "  --train-csv FILE      Training CSV file (default: ./preprocess/lexical_features_train.csv)"
+            echo "  --test-csv FILE       Test CSV file (default: ./preprocess/lexical_features_test.csv)"
+            echo "  --output-dir DIR      Output directory (default: ./experiments)"
             echo "  --device DEVICE       Device to use: cuda, cpu, or auto (default: auto)"
             echo "  --batch-size SIZE     Batch size (default: 16)"
             echo "  --max-epochs N        Maximum epochs (default: 50)"
@@ -67,9 +73,10 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "=========================================="
-echo "SALSA Leave-One-Corpus-Out (LOCO) Evaluation"
+echo "SALSA Training on ADReSS Utterance Data"
 echo "=========================================="
-echo "Data directory: $DATA_DIR"
+echo "Training CSV: $TRAIN_CSV"
+echo "Test CSV: $TEST_CSV"
 echo "Output directory: $OUTPUT_DIR"
 echo "Device: $DEVICE"
 echo "Batch size: $BATCH_SIZE"
@@ -78,142 +85,89 @@ echo "Patience: $PATIENCE"
 echo "Random seed: $SEED"
 echo ""
 
+# Validate input files
+if [[ ! -f "$TRAIN_CSV" ]]; then
+    echo "ERROR: Training CSV file not found: $TRAIN_CSV"
+    echo "Make sure you've run lexical feature extraction first:"
+    echo "  cd preprocess && python lexical_features.py"
+    exit 1
+fi
+
+if [[ ! -f "$TEST_CSV" ]]; then
+    echo "ERROR: Test CSV file not found: $TEST_CSV"
+    echo "Make sure you've run lexical feature extraction first:"
+    echo "  cd preprocess && python lexical_features.py"
+    exit 1
+fi
+
 # Create output directories
 mkdir -p "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR/logs"
-mkdir -p "$OUTPUT_DIR/plots"
-mkdir -p "$OUTPUT_DIR/configs"
 
 # Common arguments for all experiments
-COMMON_ARGS="--batch_size $BATCH_SIZE --max_epochs $MAX_EPOCHS --patience $PATIENCE --seed $SEED --output_dir $OUTPUT_DIR"
+COMMON_ARGS="--batch_size $BATCH_SIZE --max_epochs $MAX_EPOCHS --patience $PATIENCE --seed $SEED"
+COMMON_ARGS="$COMMON_ARGS --train_csv $TRAIN_CSV"
 
 if [ "$DEVICE" != "auto" ]; then
     COMMON_ARGS="$COMMON_ARGS --device $DEVICE"
 fi
 
-# Create corpus configuration file
-CORPUS_CONFIG="$OUTPUT_DIR/configs/corpus_config.json"
-
-echo "Creating corpus configuration..."
-
-cat > "$CORPUS_CONFIG" << EOF
-{
-  "adress": {
-    "name": "ADReSS-2020",
-    "data_dir": "$DATA_DIR/adress",
-    "train_manifest": "$DATA_DIR/adress/train_manifest.json",
-    "val_manifest": "$DATA_DIR/adress/val_manifest.json", 
-    "test_manifest": "$DATA_DIR/adress/test_manifest.json",
-    "group_id": 0,
-    "description": "ADReSS 2020 challenge dataset - balanced picture description task"
-  },
-  "adresso": {
-    "name": "ADReSSo-2021-2022", 
-    "data_dir": "$DATA_DIR/adresso",
-    "train_manifest": "$DATA_DIR/adresso/train_manifest.json",
-    "val_manifest": "$DATA_DIR/adresso/val_manifest.json",
-    "test_manifest": "$DATA_DIR/adresso/test_manifest.json", 
-    "group_id": 1,
-    "description": "ADReSSo 2021/2022 speech-only challenge - more challenging than ADReSS"
-  },
-  "pitt": {
-    "name": "DementiaBank-Pitt",
-    "data_dir": "$DATA_DIR/pitt", 
-    "train_manifest": "$DATA_DIR/pitt/train_manifest.json",
-    "val_manifest": "$DATA_DIR/pitt/val_manifest.json",
-    "test_manifest": "$DATA_DIR/pitt/test_manifest.json",
-    "group_id": 2,
-    "description": "DementiaBank Pittsburgh Cookie Theft corpus - large longitudinal dataset"
-  }
-}
-EOF
-
-echo "Corpus configuration created: $CORPUS_CONFIG"
-
-# Validate corpus configuration
-echo "Validating corpus configuration..."
-
-missing_files=()
-
-while IFS= read -r line; do
-    if [[ $line =~ \"([^\"]+_manifest\.json)\" ]]; then
-        manifest_file="${BASH_REMATCH[1]}"
-        if [[ ! -f "$manifest_file" ]]; then
-            missing_files+=("$manifest_file")
-        fi
-    fi
-done < "$CORPUS_CONFIG"
-
-if [[ ${#missing_files[@]} -gt 0 ]]; then
-    echo "ERROR: Missing manifest files:"
-    for file in "${missing_files[@]}"; do
-        echo "  - $file"
-    done
-    echo ""
-    echo "Please ensure all datasets are properly prepared with manifest files."
-    echo "Use the data preparation scripts in the preprocess/ directory."
-    exit 1
-fi
-
-echo "✓ All manifest files found"
+echo "Running experiments with your ADReSS utterance-level features..."
 echo ""
 
-# Function to run LOCO experiment
-run_loco_experiment() {
-    local experiment_name=$1
-    local use_group_dro=$2
-    local description="$3"
-    
-    echo "----------------------------------------"
-    echo "Running LOCO Experiment: $experiment_name"
-    echo "Description: $description"
-    echo "GroupDRO: $use_group_dro"
-    echo "----------------------------------------"
-    
-    local log_file="$OUTPUT_DIR/logs/${experiment_name}.log"
-    echo "LOCO Experiment: $experiment_name" > "$log_file"
-    echo "Started at: $(date)" >> "$log_file"
-    echo "GroupDRO: $use_group_dro" >> "$log_file"
-    echo "" >> "$log_file"
-    
-    local group_dro_flag=""
-    if [[ "$use_group_dro" == "true" ]]; then
-        group_dro_flag="--use_group_dro"
-    fi
-    
-    if python eval/leave_one_corpus.py \
-        --corpus_config "$CORPUS_CONFIG" \
-        --experiment_name "$experiment_name" \
-        $group_dro_flag \
-        $COMMON_ARGS 2>&1 | tee -a "$log_file"; then
-        
-        echo "✓ Completed LOCO experiment: $experiment_name"
-        echo "Finished at: $(date)" >> "$log_file"
-        return 0
-    else
-        echo "✗ Failed LOCO experiment: $experiment_name"
-        echo "FAILED at: $(date)" >> "$log_file"
-        return 1
-    fi
-}
+# Run different model configurations on your ADReSS data
 
-# Function to run baseline LOCO experiments
-run_baseline_loco() {
-    echo "Running baseline LOCO experiments..."
-    echo ""
-    
-    # openSMILE eGeMAPS baseline LOCO
-    echo "Running openSMILE eGeMAPS LOCO baseline..."
-    if python baselines/run_opensmile_loco.py \
-        --corpus_config "$CORPUS_CONFIG" \
-        --experiment_name "loco_baseline_egemaps" \
-        --feature_set egemaps \
-        --classifier_type logistic \
-        --output_dir "$OUTPUT_DIR" \
-        --seed $SEED 2>&1 | tee "$OUTPUT_DIR/logs/loco_baseline_egemaps.log"; then
-        echo "✓ Completed openSMILE eGeMAPS LOCO baseline"
-    else
-        echo "✗ Failed openSMILE eGeMAPS LOCO baseline"
+# 1. Lexical-only model (just your CHAT features)
+echo "1. Training lexical-only model..."
+echo "   Using your 400-dimensional utterance features from CHAT transcripts"
+python train/train.py \
+    --experiment_name "lexical_only_adress" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    --test_csv $TEST_CSV \
+    --output_dir $OUTPUT_DIR \
+    $COMMON_ARGS
+
+echo ""
+
+# 2. ERM training (standard approach)
+echo "2. Training with ERM (standard training)..."
+python train/train_erm.py \
+    --experiment_name "erm_lexical_adress" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    --log_dir $OUTPUT_DIR/logs \
+    $COMMON_ARGS
+
+echo ""
+
+# 3. GroupDRO training (robust to group differences)
+echo "3. Training with GroupDRO (robust training)..."
+python train/train_groupdro.py \
+    --experiment_name "groupdro_lexical_adress" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    --log_dir $OUTPUT_DIR/logs \
+    $COMMON_ARGS
+
+echo ""
+echo "=========================================="
+echo "All experiments completed!"
+echo "=========================================="
+echo "Results saved in: $OUTPUT_DIR"
+echo ""
+echo "Your experiments:"
+echo "- lexical_only_adress: Basic lexical model with your CHAT features"
+echo "- erm_lexical_adress: Standard ERM training"
+echo "- groupdro_lexical_adress: GroupDRO for robust training"
+echo ""
+echo "Each experiment folder contains:"
+echo "- results.json: Final metrics and performance"
+echo "- model.pth: Saved model weights"
+echo "- training logs"
     fi
     
     echo ""

@@ -1,33 +1,33 @@
 #!/bin/bash
 
-# SALSA Ablation Study Runner
-# Comprehensive ablation studies across architectural choices, training strategies, and hyperparameters
+# SALSA Ablation Study - Simple experiments with your ADReSS data
+# Tests different model configurations and hyperparameters
 
 set -e  # Exit on any error
 
 # Default parameters
-DATA_DIR="./data"
+TRAIN_CSV="./preprocess/lexical_features_train.csv"
+TEST_CSV="./preprocess/lexical_features_test.csv"
 OUTPUT_DIR="./ablation_results"
 DEVICE="auto"
 BATCH_SIZE=16
 MAX_EPOCHS=30
 PATIENCE=8
 SEED=42
-DATASET="adress"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --data-dir)
-            DATA_DIR="$2"
+        --train-csv)
+            TRAIN_CSV="$2"
+            shift 2
+            ;;
+        --test-csv)
+            TEST_CSV="$2"
             shift 2
             ;;
         --output-dir)
             OUTPUT_DIR="$2"
-            shift 2
-            ;;
-        --dataset)
-            DATASET="$2"
             shift 2
             ;;
         --device)
@@ -48,6 +48,148 @@ while [[ $# -gt 0 ]]; do
             ;;
         --seed)
             SEED="$2"
+            shift 2
+            ;;
+        --help)
+            echo "Usage: $0 [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --train-csv FILE      Training CSV file (default: ./preprocess/lexical_features_train.csv)"
+            echo "  --test-csv FILE       Test CSV file (default: ./preprocess/lexical_features_test.csv)"
+            echo "  --output-dir DIR      Output directory (default: ./ablation_results)"
+            echo "  --device DEVICE       Device to use: cuda, cpu, or auto (default: auto)"
+            echo "  --batch-size SIZE     Batch size (default: 16)"
+            echo "  --max-epochs N        Maximum epochs (default: 30)"
+            echo "  --patience N          Early stopping patience (default: 8)"
+            echo "  --seed N              Random seed (default: 42)"
+            echo "  --help               Show this help message"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+    esac
+done
+
+echo "=========================================="
+echo "SALSA Ablation Studies on ADReSS Data"
+echo "=========================================="
+echo "Training CSV: $TRAIN_CSV"
+echo "Test CSV: $TEST_CSV"
+echo "Output directory: $OUTPUT_DIR"
+echo "Device: $DEVICE"
+echo "Batch size: $BATCH_SIZE"
+echo "Max epochs: $MAX_EPOCHS"
+echo "Patience: $PATIENCE"
+echo "Random seed: $SEED"
+echo ""
+
+# Validate input files
+if [[ ! -f "$TRAIN_CSV" ]]; then
+    echo "ERROR: Training CSV file not found: $TRAIN_CSV"
+    exit 1
+fi
+
+if [[ ! -f "$TEST_CSV" ]]; then
+    echo "ERROR: Test CSV file not found: $TEST_CSV"
+    exit 1
+fi
+
+# Create output directories
+mkdir -p "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR/logs"
+
+# Common arguments
+COMMON_ARGS="--batch_size $BATCH_SIZE --max_epochs $MAX_EPOCHS --patience $PATIENCE --seed $SEED"
+COMMON_ARGS="$COMMON_ARGS --train_csv $TRAIN_CSV --test_csv $TEST_CSV --output_dir $OUTPUT_DIR"
+
+if [ "$DEVICE" != "auto" ]; then
+    COMMON_ARGS="$COMMON_ARGS --device $DEVICE"
+fi
+
+echo "Running ablation studies..."
+echo ""
+
+# 1. Different aggregation strategies
+echo "1. Testing different utterance aggregation strategies..."
+for agg_type in "mean" "attention" "transformer" "lstm"; do
+    echo "   - Testing $agg_type aggregation..."
+    python train/train.py \
+        --experiment_name "agg_${agg_type}" \
+        --model_type lexical_only \
+        --lexical_dim 400 \
+        --aggregation_type $agg_type \
+        --val_csv $TEST_CSV \
+        $COMMON_ARGS
+done
+
+echo ""
+
+# 2. Different fusion dimensions  
+echo "2. Testing different fusion dimensions..."
+for dim in 256 512 768 1024; do
+    echo "   - Testing fusion dim $dim..."
+    python train/train.py \
+        --experiment_name "fusion_dim_${dim}" \
+        --model_type lexical_only \
+        --lexical_dim 400 \
+        --fusion_dim $dim \
+        --val_csv $TEST_CSV \
+        $COMMON_ARGS
+done
+
+echo ""
+
+# 3. Different dropout rates
+echo "3. Testing different dropout rates..."
+for dropout in 0.1 0.3 0.5 0.7; do
+    echo "   - Testing dropout $dropout..."
+    python train/train.py \
+        --experiment_name "dropout_${dropout}" \
+        --model_type lexical_only \
+        --lexical_dim 400 \
+        --dropout $dropout \
+        --val_csv $TEST_CSV \
+        $COMMON_ARGS
+done
+
+echo ""
+
+# 4. ERM vs GroupDRO comparison
+echo "4. Comparing ERM vs GroupDRO training..."
+echo "   - ERM training..."
+python train/train_erm.py \
+    --experiment_name "comparison_erm" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    $COMMON_ARGS
+
+echo "   - GroupDRO training..."
+python train/train_groupdro.py \
+    --experiment_name "comparison_groupdro" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    $COMMON_ARGS
+
+echo ""
+echo "=========================================="
+echo "Ablation studies completed!"
+echo "=========================================="
+echo "Results saved in: $OUTPUT_DIR"
+echo ""
+echo "Experiments run:"
+echo "- Aggregation strategies: mean, attention, transformer, lstm"
+echo "- Fusion dimensions: 256, 512, 768, 1024"
+echo "- Dropout rates: 0.1, 0.3, 0.5, 0.7"
+echo "- Training methods: ERM vs GroupDRO"
+echo ""
+echo "Each experiment folder contains:"
+echo "- results.json: Performance metrics"
+echo "- model.pth: Trained model"
+echo "- Training logs"
             shift 2
             ;;
         --quick)

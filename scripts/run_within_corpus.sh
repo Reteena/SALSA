@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# SALSA Within-Corpus Experiments Runner
-# Runs experiments within individual corpora (official train/val/test splits)
+# SALSA Within-Corpus Training - Simple training on your ADReSS data
+# Uses train/test split from your CSV files
 
 set -e  # Exit on any error
 
 # Default parameters
-DATA_DIR="./data"
+TRAIN_CSV="./preprocess/lexical_features_train.csv"
+TEST_CSV="./preprocess/lexical_features_test.csv"
 OUTPUT_DIR="./results"
 DEVICE="auto"
 BATCH_SIZE=16
@@ -17,8 +18,12 @@ SEED=42
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --data-dir)
-            DATA_DIR="$2"
+        --train-csv)
+            TRAIN_CSV="$2"
+            shift 2
+            ;;
+        --test-csv)
+            TEST_CSV="$2"
             shift 2
             ;;
         --output-dir)
@@ -48,6 +53,107 @@ while [[ $# -gt 0 ]]; do
         --help)
             echo "Usage: $0 [OPTIONS]"
             echo ""
+            echo "Options:"
+            echo "  --train-csv FILE      Training CSV file (default: ./preprocess/lexical_features_train.csv)"
+            echo "  --test-csv FILE       Test CSV file (default: ./preprocess/lexical_features_test.csv)"
+            echo "  --output-dir DIR      Output directory (default: ./results)"
+            echo "  --device DEVICE       Device to use: cuda, cpu, or auto (default: auto)"
+            echo "  --batch-size SIZE     Batch size (default: 16)"
+            echo "  --max-epochs N        Maximum epochs (default: 100)"
+            echo "  --patience N          Early stopping patience (default: 15)"
+            echo "  --seed N              Random seed (default: 42)"
+            echo "  --help               Show this help message"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option $1"
+            exit 1
+            ;;
+    esac
+done
+
+echo "=========================================="
+echo "SALSA Within-Corpus Training on ADReSS"
+echo "=========================================="
+echo "Training CSV: $TRAIN_CSV"
+echo "Test CSV: $TEST_CSV"
+echo "Output directory: $OUTPUT_DIR"
+echo "Device: $DEVICE"
+echo "Batch size: $BATCH_SIZE"
+echo "Max epochs: $MAX_EPOCHS"
+echo "Patience: $PATIENCE"
+echo "Random seed: $SEED"
+echo ""
+
+# Validate input files
+if [[ ! -f "$TRAIN_CSV" ]]; then
+    echo "ERROR: Training CSV file not found: $TRAIN_CSV"
+    exit 1
+fi
+
+if [[ ! -f "$TEST_CSV" ]]; then
+    echo "ERROR: Test CSV file not found: $TEST_CSV"
+    exit 1
+fi
+
+# Create output directories
+mkdir -p "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR/logs"
+
+# Common arguments
+COMMON_ARGS="--batch_size $BATCH_SIZE --max_epochs $MAX_EPOCHS --patience $PATIENCE --seed $SEED"
+COMMON_ARGS="$COMMON_ARGS --train_csv $TRAIN_CSV --test_csv $TEST_CSV --output_dir $OUTPUT_DIR"
+
+if [ "$DEVICE" != "auto" ]; then
+    COMMON_ARGS="$COMMON_ARGS --device $DEVICE"
+fi
+
+echo "Running within-corpus experiments on your ADReSS data..."
+echo ""
+
+# Main lexical model with your CHAT features
+echo "1. Training main lexical model..."
+python train/train.py \
+    --experiment_name "adress_lexical_main" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    $COMMON_ARGS
+
+echo ""
+
+# ERM training
+echo "2. ERM training..."
+python train/train_erm.py \
+    --experiment_name "adress_erm" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    $COMMON_ARGS
+
+echo ""
+
+# GroupDRO training
+echo "3. GroupDRO training..."
+python train/train_groupdro.py \
+    --experiment_name "adress_groupdro" \
+    --model_type lexical_only \
+    --lexical_dim 400 \
+    --val_csv $TEST_CSV \
+    $COMMON_ARGS
+
+echo ""
+echo "=========================================="
+echo "Within-corpus experiments completed!"
+echo "=========================================="
+echo "Results saved in: $OUTPUT_DIR"
+echo ""
+echo "Experiments:"
+echo "- adress_lexical_main: Basic lexical model"
+echo "- adress_erm: ERM training"
+echo "- adress_groupdro: GroupDRO robust training"
+echo ""
+echo "Each contains results.json with performance metrics"
             echo "Options:"
             echo "  --data-dir DIR        Data directory (default: ./data)"
             echo "  --output-dir DIR      Output directory (default: ./results)"
